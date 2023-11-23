@@ -1,0 +1,45 @@
+<!-- <div style="width: 50%; display: flex; justify-content: space-between;">
+  <div class="relative h-fit" style="display: flex;">
+    <mat-label class="absolute top-6 left-14"></mat-label>
+    <mat-form-field
+      (click)="fileInput.click()"
+      class="w-full flex justify-center p-5"
+    >
+      <input
+        hidden
+        (change)="onFileSelected($event)"
+        #fileInput
+        type="file"
+        id="file"
+        multiple
+      />
+      <span class=" top-2 left-6 file-name">{{
+        selectedFile?.name
+      }}</span>
+      <input matInput readonly />
+    </mat-form-field>
+
+    <button
+    type="button"
+    class="bg-[#3f51b5] text-white"
+    mat-raised-button
+    (click)="fileInput.click()"
+  >
+    Choose File
+  </button>
+  </div>
+
+</div> -->
+<div class="px-3">
+  <mat-form-field class="w-[300px]  xs:w-full">
+    <div style="display: flex; justify-content: space-between; width: 100%">
+      <div><label class="text-lg" for="">Choose File</label></div>
+      <div>
+        <ngx-mat-file-input formControlName="basicfile"></ngx-mat-file-input>
+      </div>
+      <div><button style="background: #1d43b6; color: white;" mat-raised-button>Browse File</button></div>
+    </div>
+  </mat-form-field>
+</div>
+
+

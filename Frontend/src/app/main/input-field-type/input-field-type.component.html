@@ -1,0 +1,178 @@
+<div class="flex justify-center flex-col w-full">
+  <div>
+    <mat-hint class="text-[red] font-bold text-xs"
+      >For preventing SQL injection attack, You will have to use mysql.escape()
+      method in the backend for the all input fields including text box,
+      datefield, numeric field, time, combo box (with multi select), check box,
+      radio buttons etc entered by the user. In addition, for numeric fields
+      check number input field tab in burger menu where Non numeric characters
+      is disabled as input from the user key board.
+    </mat-hint>
+  </div>
+  <div class="flex flex-col justify-center w-full mt-4 py-2">
+    <form
+      action=""
+      class="flex flex-col w-full  xs:w-full"
+      [formGroup]="form"
+    >
+      <div class="input-type-main">
+        <div>
+          <mat-label class="custom-mat-label"
+            >only numbers can be entered eg:123</mat-label
+          >
+        </div>
+
+        <div class="w-full">
+          <mat-form-field
+            hintLabel="Max 10 characters"
+            class="custom-input-field input-field2 w-[50%] xs:w-full"
+            appearance="outline"
+          >
+            <mat-label>Number</mat-label>
+            <input
+              matInput
+              #input
+              maxlength="10"
+              placeholder=""
+              [(ngModel)]="number"
+              formControlName="number"
+              class=" "
+              (keypress)=" NumbersOnly($event)"
+            />
+            <mat-error *ngIf="this.form.controls['number'].invalid"
+              >This is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="input-type-main">
+        <div>
+          <mat-label class="custom-mat-label"
+            >only numbers with decimal inputs can be entered e.g:
+            1.02</mat-label
+          >
+        </div>
+        <div>
+          <mat-form-field
+            hintLabel="Max 10 characters"
+            class="custom-input-field input-field2 w-[50%] xs:w-full"
+            appearance="outline"
+          >
+            <mat-label>Decimal</mat-label>
+            <input
+              matInput
+              #input
+              maxlength="10"
+              placeholder=""
+              [(ngModel)]="decimal"
+              formControlName="decimal"
+              class=""
+              (keypress)="DecimalOnly($event)"
+            />
+            <mat-error *ngIf="this.form.controls['decimal'].invalid"
+              >This is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="input-type-main">
+        <div>
+          <mat-label class="custom-mat-label"
+            >only numbers can be entered separated by commas e.g:
+            1,000</mat-label
+          >
+        </div>
+        <div>
+          <mat-form-field
+            hintLabel="Max 10 characters"
+            class="custom-input-field input-field2 w-[50%] xs:w-full"
+            appearance="outline"
+          >
+            <mat-label>Seperator</mat-label>
+            <input
+              matInput
+              #input
+              maxlength="10"
+              placeholder=""
+              [(ngModel)]="seperator"
+              formControlName="seperator"
+              class="w-full"
+            />
+            <mat-error *ngIf="this.form.controls['seperator'].invalid"
+              >This is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div>
+          <div>
+            <mat-label class="custom-mat-label"
+              >Telephone Input with country code</mat-label
+            >
+          </div>
+          <div>
+            <mat-form-field
+            hintLabel="eg:1234567890"
+              appearance="outline"
+              class="custom-input-field  input-field w-[50%]"
+            >
+              <ngx-mat-intl-tel-input
+                [preferredCountries]="['us', 'gb']"
+                [enablePlaceholder]="true"
+                [enableSearch]="true"
+                name="phone"
+                describedBy="phoneInput"
+                formControlName="phone"
+                
+              ></ngx-mat-intl-tel-input>
+              <mat-error *ngIf=" this.form.controls['phone'].invalid ">This is required</mat-error>
+            </mat-form-field>
+             
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          mat-button
+          [disabled]="this.form.invalid"
+          style="background-color: #3366ff"
+          class="custom-btn"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="input-type-main">
+        <div>
+          <mat-label class="custom-mat-label">Multiselect Country</mat-label>
+        </div>
+
+        <div>
+          <mat-form-field
+            appearance="outline"
+            class="custom-input-field input-field2 w-[50%] xs:w-full"
+          >
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" multiple>
+              <mat-option
+              (click)="selectedCountry()"
+                *ngFor="let countries of countries"
+                [value]="countries"
+                >{{ countries.viewValue }}</mat-option
+              >
+            </mat-select>
+
+            <mat-hint > Selected Countries: <span *ngFor="let i of selectedCountryName">
+              {{i.value|json}}
+            </span></mat-hint>         
+           </mat-form-field>
+          
+          <div></div>
+        </div>
+      </div>
+      <div>
+        <button mat-button  style="background: #3366ff" class=" "  >Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

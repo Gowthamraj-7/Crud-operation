@@ -1,0 +1,49 @@
+
+<div class="flex items-center justify-center w-full">
+    <p class="bg-[#3366ff] flex text-sm w-full font-semibold text-white p-2">
+     Add Tourist Place
+    </p>
+    <div
+      class="bg-gray-400 flex justify-center cursor-pointer items-center mb-3 h-[35px]"
+    >
+      <mat-icon mat-dialog-close>close</mat-icon>
+    </div>
+  </div>
+  <div class="p-2 w-full">
+    <form [formGroup]="test">
+       <div  class="mt-2 w-full">
+        <mat-form-field appearance="outline" class="custom-input-field w-[100%] input-field2">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country"  name="food">
+            <mat-option *ngFor="let country of countries" [value]="country.value">
+              {{country.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="mt-2 w-full">
+        <mat-form-field
+          appearance="outline"
+          class="custom-input-field w-[100%] input-field2"
+        >
+          <mat-label>Enter places</mat-label>
+          <input matInput type="text" formControlName="name" />
+        </mat-form-field>
+      </div>
+      <!-- <div class="mt-2 w-full">
+        <mat-radio-group aria-label="Gender" formControlName="gender">
+          <mat-label>is Active: </mat-label>
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div> -->
+  
+      <div class="mt-2" >
+        <button mat-raised-button class="mat-raised-button" (click)="post_method()"[disabled]="test.invalid" >
+          Add
+        </button>
+      </div>
+      
+    </form>
+  </div>

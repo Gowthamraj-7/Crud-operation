@@ -1,0 +1,98 @@
+<!-- <div class="flex w-[50%] justify-center">
+  <mat-toolbar class="custom-toolbar flex justify-between items-center h-[37px] bg-[#1d2684]">
+    <div class="items-end flex justify-end ">
+      <button class="items-end flex justify-end" >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  
+  </mat-toolbar>
+</div> -->
+
+<div class="flex items-center justify-center w-full">
+  <p class="bg-[#3366ff] flex text-sm w-full font-semibold text-white p-2">
+    {{ title }}
+  </p>
+  <div
+    class="bg-gray-400 flex justify-center cursor-pointer items-center mb-3 h-[35px]"
+  >
+    <mat-icon mat-dialog-close>close</mat-icon>
+  </div>
+</div>
+<div class="p-2 w-full">
+  <form [formGroup]="test">
+    <div class="mt-2 w-full">
+      <mat-form-field
+        appearance="outline"
+        class="custom-input-field w-[100%] input-field2"
+      >
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div class="mt-2 w-full">
+      <mat-form-field
+        appearance="outline"
+        class="custom-input-field w-[100%] input-field2"
+      >
+        <mat-label>age</mat-label>
+        <input matInput type="text" formControlName="age" />
+      </mat-form-field>
+    </div>
+    <div class="mt-2 w-full">
+      <mat-form-field appearance="outline"  class="custom-input-field w-[100%] input-field2">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-2 w-full">
+      <mat-radio-group aria-label="Gender" formControlName="gender">
+        <mat-label>Choose Gender</mat-label>
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="mt-2 w-full">
+      <mat-form-field
+        appearance="outline"
+        class="custom-input-field w-[100%] input-field2"
+      >
+        <select matNativeControl required formControlName="select">
+          <mat-label>Select your Degree</mat-label>
+          <option value="">----</option>
+          <option value="BCA">BCA</option>
+          <option value="Bsc">Bsc Cs</option>
+          <option value="BBA">BBA</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-2 w-full">
+      <mat-form-field
+        class="custom-input-field w-[100%] input-field2"
+        appearance="outline"
+      >
+        <mat-label>Enter Your Address</mat-label>
+        <textarea formControlName="address" 
+          matInput
+          placeholder="Ex.  12/7 NW Bobcat Lane, TN 655-567 "
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-2" *ngIf="data.type == 1">
+      <button mat-button style="background: #3366ff"  (click)="post_method()">
+        Add
+      </button>
+    </div>
+    <div class="mt-2" *ngIf="data.type == 2">
+      <button mat-button style="background: #3366ff" (click)="update_method()">
+        Update
+      </button>
+    </div>
+  </form>
+</div>

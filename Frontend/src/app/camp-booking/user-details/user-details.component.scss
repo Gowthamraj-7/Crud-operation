@@ -1,0 +1,36 @@
+
+    .mat-raised-button{
+        border-radius: 20px !important;
+      color: aliceblue;
+      width: fit-content;
+      background: #3366ff
+    }
+      
+    mat-raised-button.active{
+        background: #3366ff
+    }
+    
+
+    .mat-menu-item { 
+      -webkit-user-select: none; 
+      -moz-user-select: none; 
+      user-select: none; 
+      cursor: pointer; 
+      outline: none; 
+      border: none; 
+      -webkit-tap-highlight-color: transparent; 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis; 
+      display: block; 
+      line-height: 25px !important; 
+      min-height: 95px !important; 
+      padding: 0 10px; 
+      height: 85px; 
+      text-align: left; 
+      text-decoration: none; 
+      max-width: 100%; 
+      position: relative; 
+  }
+      
+    

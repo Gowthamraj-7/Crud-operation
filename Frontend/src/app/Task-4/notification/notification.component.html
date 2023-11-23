@@ -1,0 +1,55 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">   Add/Edit Notifiications</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon mat-dialog-close>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="flex  flex-col m-1">
+    <!-- <span class="font-bold text-sm text-blue-700 ml-1">
+        Add/Edit Notifiications
+    </span> -->
+    <div class="flex mt-2 flex-col p-1">
+      
+        <mat-form-field
+        appearance="outline"
+        class="custom-input-field w-[100%] input-field2 mt-1"
+      >
+        <mat-label>To Do Task Name</mat-label>
+        <input matInput  />
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       
+      </mat-form-field>
+      <span class="my-[4px]"><span class="text-sm font-bold">Scheduled Date ,Time</span>:18 oct 2023 5pm</span>
+      <mat-form-field
+      appearance="outline"
+      class="custom-input-field w-[100%] input-field2"
+    >
+      <mat-label>Due Date:</mat-label>
+      <input
+       
+        matInput
+        [ngxMatDatetimePicker]="datetimepicker"
+        class=""
+        readonly
+        (click)="datetimepicker.open()"
+        [min]="currentDate"
+      />
+      <mat-error>date and time is required</mat-error>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="$any(datetimepicker)"
+      ></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #datetimepicker>
+        <ng-template>
+          <span mat-button>OK</span>
+        </ng-template>
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+    <div class="flex justify-center mt-1 ">
+        <button mat-raised-button class="mat-raised-button">Save</button>
+    </div>
+    </div>
+
+</div>

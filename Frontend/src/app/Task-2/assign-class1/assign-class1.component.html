@@ -1,0 +1,80 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size"> choose class </span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="dialogClose()">close</mat-icon>
+  </button>
+</mat-toolbar>
+<section class="calc('100%'-'27px') overflow-auto mb-1">
+  <div class="flex flex-col">
+    <div class="mt-2 w-full xs:w-full px-2">
+      <form [formGroup]="gowtham">
+        <mat-form-field
+          appearance="outline"
+          class="custom-input-field w-[100%] input-field2"
+        >
+          <mat-label> Choose Class </mat-label>
+          <mat-select formControlName="select">
+            <mat-option
+              *ngFor="let place of data"
+              [value]="place.class_name"
+              (click)="getClassCapacity(place)"
+            >
+              {{ place.class_name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="px-[70px] mb-2 text-center">
+      <button
+        mat-raised-button
+        class="mat-raised-button"
+        (click)="post_method()"
+        [disabled]="gowtham.invalid"
+      >
+        Assign
+      </button>
+    </div>
+  </div>
+  <div class="w[200px] h-[100px] p-1 " *ngIf="value2.length > 0">
+    <p class="text-blue-700 text-center font-bold">
+      if youn want add delete the Below students
+    </p>
+
+    <div class="flex justify-center items-center flex-col border-2 border-black ">
+      <div class="" *ngFor="let place of value2">
+        <div class="min-w-[200px] max-w-[200px] text-left">
+          <span class="text-blue-600  ">Student Name:</span
+          ><span class="">{{ place.first_name }}{{ place.last_name }} </span>
+        </div>
+        <div class="min-w-[200px] max-w-[200px] text-left">
+          <span class="text-red-500  ">Class Name:</span
+          ><span class="">{{ place.class_name }}</span>
+        </div>
+      </div>
+    </div>
+   
+
+      <!-- <span class="text-red-500">Class Name:</span><span>{{ place.class_name }}</span> -->
+   
+    <!-- <p class="pt-[2px] px-3" >
+      Class Name:{{ place.class_name }}
+    </p> -->
+  </div>
+
+  <div class="w[200px] h-[80px] items-center text-center p-1" *ngIf="final_value.length > 0">
+    <span class="pt-2 text-center font-bold text-sm">class capacity is low</span>
+    <div class="border-2 border-black  ">
+      <p class="pt-[2px] px-3 text-center">
+        <span class="text-red-600">class Capacity:</span
+        ><span>{{ final_value[0][1].class_capacity }}</span>
+      </p>
+      <p class="pt-[2px] px-3 text-center">
+        <span class="text-blue-600">Total Students:</span
+        ><span>{{ final_value[0][0].length }}</span>
+      </p>
+    </div>
+  </div>
+</section>

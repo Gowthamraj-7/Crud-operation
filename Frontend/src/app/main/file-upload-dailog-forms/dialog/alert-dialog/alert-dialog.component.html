@@ -1,0 +1,26 @@
+<div class="flex items-center justify-center w-full">
+  <p class="bg-[#3366ff] flex text-sm w-full font-semibold text-white p-2">
+    Dialog Model
+  </p>
+  <div class="bg-gray-400 flex justify-center items-center mb-3 h-[35px]">
+      <mat-icon  mat-dialog-close 
+        >close</mat-icon>
+  </div>
+</div>
+<div class="p-2 w-full">
+    <div >
+        <span>This page says: {{data.source}}</span>
+    </div>
+    <form [formGroup]="alertForm">
+      <div class="mt-2 w-full">
+          <mat-form-field appearance="outline" class="custom-input-field w-[75%] input-field2">
+              <mat-label>Enter text</mat-label>
+              <input matInput type="text" [(ngModel)]="data.destination" formControlName="text" >
+          </mat-form-field>
+      </div>
+      
+      <div>
+        <button mat-button [mat-dialog-close]="data.destination" [disabled]="this.alertForm.invalid" style="background: #3366ff">Close</button>
+      </div>
+    </form>
+</div>

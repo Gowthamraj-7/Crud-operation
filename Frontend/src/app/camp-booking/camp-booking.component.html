@@ -1,0 +1,81 @@
+<div class="p-2 w-[50%] lt-md:w-full">
+    <form [formGroup]="campBook">
+    
+        
+           <div  class="mt-2 w-full xs:w-full">
+            <mat-form-field appearance="outline" class="custom-input-field w-[100%] input-field2">
+              <mat-label>Country</mat-label>
+              <mat-select  name="food" formControlName="country">
+                <mat-option (click)="getPlace(country.value)" *ngFor="let country of countries" [value]="country.value">
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+         
+          <div  class="mt-2 w-full xs:w-full">
+            <mat-form-field appearance="outline" class="custom-input-field w-[100%] input-field2">
+              <mat-label>places</mat-label>
+              <mat-select  name="food" formControlName="place">
+                <mat-option *ngFor="let place of place" [value]="place.country_place" (click)="selectedPlaces(place)">
+                  {{place.country_place}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+         <div class="mt-2 w-full lt-md:w-full">
+            <mat-form-field
+              appearance="outline"
+              class="custom-input-field w-[100%] input-field2"
+            >
+              <mat-label>Choose a date and time</mat-label>
+              <input
+                formControlName="dateTime"
+                matInput
+                [ngxMatDatetimePicker]="datetimepicker"
+                class=""
+                readonly
+                (click)="datetimepicker.open()"
+                [min]="currentDate"
+              />
+              <mat-error>date and time is required</mat-error>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="$any(datetimepicker)"
+             
+              
+              ></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #datetimepicker>
+                <ng-template>
+                  <span mat-button>OK</span>
+                </ng-template>
+              </ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+          <div class="mt-2 flex flex-row items-center" >
+           <button mat-button class="mat-raised-button" (click)="click()" [disabled]="campBook.controls['place'].invalid" >Add Users</button>
+            <div class=" px-3  items-center justify-center">
+              <button mat-raised-button class="mat-raised-button" (click)="remove()" [disabled]=" isButtonDisabled" >
+                <!-- <mat-icon  >delete</mat-icon>Delete -->Delete
+              </button>
+         </div >
+          </div>
+          
+          
+        </form>
+        <div class="flex flex-col w-full h-[290px] border border-black mt-2 rounded-lg xs:w-full">
+<div class="mt-5 px-5 flex flex-col gap-2">
+  <mat-radio-button (change)="method(users.id)" *ngFor="let users of getvalue">{{users.firstname}}</mat-radio-button>
+</div>
+        </div>
+        
+</div>
+<button
+mat-raised-button color="primary"
+class="mat-raised-button"
+[disabled]="campBook.invalid ||getvalue.length <=0"
+
+(click)="insert()"
+>
+submit
+</button>

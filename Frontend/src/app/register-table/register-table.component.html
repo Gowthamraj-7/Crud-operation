@@ -1,0 +1,119 @@
+
+<div class=" h-[400px] w-auto max-w-[600px]  drop-shadow-2xl py-5">
+    <div class="max-h-[237px] h-fit  overflow-auto">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <!-- <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [aria-label]="checkboxLabel()">
+                </mat-checkbox> -->
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-radio-button (click)="selectedRow(row)"
+                             
+                              
+                              >
+                </mat-radio-button>
+              </td>
+            </ng-container>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef class="p-[2mm]"> id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+             <ng-container matColumnDef="mobile_number">
+              <th mat-header-cell *matHeaderCellDef class="p-[2mm]">Phone</th>
+              <td mat-cell *matCellDef="let element">{{element.mobile_number}}</td>
+            </ng-container> 
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="firstname">
+              <th mat-header-cell *matHeaderCellDef style="padding: 2mm;"> Firstname </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+            </ng-container>
+            <ng-container matColumnDef="lastname" style="padding: 2mm;">
+              <th mat-header-cell *matHeaderCellDef> laststname </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="gender">
+              <th mat-header-cell *matHeaderCellDef style="padding: 2mm;"> gender</th>
+              <td mat-cell *matCellDef="let element">{{element.gender==1 ?"Male":"female"}}</td>
+            </ng-container>
+            <!-- <ng-container matColumnDef="radio">
+              <th mat-header-cell *matHeaderCellDef> Radio btn </th>
+              <td mat-cell *matCellDef="let element"><mat-radio-button>{{element.radio}}</mat-radio-button>  </td>
+            </ng-container> -->
+    
+         
+            <!-- Cuurency Column -->
+            <ng-container matColumnDef="dob">
+              <th mat-header-cell *matHeaderCellDef style="padding: 2mm;"> dob</th>
+              <td mat-cell *matCellDef="let element">{{element.dob| date:'dd-MM-yyyy'}}</td>
+            </ng-container>
+    
+
+            <ng-container matColumnDef="country">
+              <th mat-header-cell *matHeaderCellDef style="padding: 2mm;">country</th>
+              <td mat-cell *matCellDef="let element">{{element.country}}</td>
+            </ng-container>
+    
+    
+            <!-- <ng-container matColumnDef="course">
+              <th mat-header-cell *matHeaderCellDef>course</th>
+              <td mat-cell *matCellDef="let element">{{element.select1}}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="address">
+              <th mat-header-cell *matHeaderCellDef>address</th>
+              <td mat-cell *matCellDef="let element">{{element.address}}</td>
+            </ng-container> -->
+    
+            <!-- <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef> delete </th>
+              <td mat-cell *matCellDef="let element"> <button mat-button [mat-dialog-close] style="background: #dc1825" (click)="delete_method(element.id)">Delete</button> </td>
+            </ng-container> -->
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                >
+            </tr>
+    
+            <!-- Filter -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="8">No results found !</td>
+          </tr>
+          </table>
+    </div>
+      <div class="">
+        <mat-paginator
+          
+          [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions"
+         
+        >
+        </mat-paginator>
+      </div>
+    
+      <div class="flex justify-between items-center bg-white px-3 ">
+        <div>
+        <mat-form-field class="example-full-width custom-input-field input-field2" appearance="outline">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="eg:Neon">
+    
+        </mat-form-field>
+      </div>
+    
+    
+    <div>
+      <span  class="underline text-blue-700">Export</span>
+    </div>
+    </div>
+    </div>

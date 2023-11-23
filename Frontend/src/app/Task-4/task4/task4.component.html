@@ -1,0 +1,334 @@
+<mat-tab-group>
+  <mat-tab
+    label="Pending"
+    style="background-color: blue; opacity: inherit"
+    class="active"
+  >
+    <div class="flex w-full flex-col">
+      <div class="flex-row mt-2 flex lt-md:flex-col">
+        <div class="flex flex-row gap-1 lt-md:gap-2">
+          <div class="mt-[7px]">
+            <button
+              mat-raised-button
+              class="mat-raised-button"
+              (click)="click()"
+            >
+              Add New
+            </button>
+          </div>
+          <div class="flex flex-row">
+            <div class="">
+              <button
+                mat-icon-button
+                [disabled]="disableBtn"
+                class=""
+                (click)="edit()"
+              >
+                <mat-icon
+                  mat-icon
+                  class="cursor-pointer"
+                  [ngClass]="{ 'gray-icon': !disableBtn }"
+                  >edit</mat-icon
+                >
+              </button>
+            </div>
+            <div class="">
+              <button
+                mat-icon-button
+                [disabled]="disableBtn"
+                (click)="delete()"
+              >
+                <mat-icon
+                  mat-icon
+                  class="cursor-pointer"
+                  [ngClass]="{ 'red-icon': !disableBtn }"
+                  >delete</mat-icon
+                >
+              </button>
+            </div>
+            <div class="">
+              <button mat-icon-button (click)="value()">
+                <mat-icon mat-icon class="cursor-pointer" style="color: brown"
+                  >notifications</mat-icon
+                >
+              </button>
+            </div>
+            <div class="">
+              <button mat-icon-button>
+                <mat-icon
+                  mat-icon
+                  class="text-center cursor-pointer"
+                  style="color: brown"
+                  >notifications_off</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-row xs:flex-col">
+          <!-- <span class="border-2 w-[50px]"><mat-icon>search</mat-icon></span> -->
+          <div>
+            <mat-form-field
+              appearance="outline"
+              class="custom-input-field w-[100%] input-field2 mt-[1px]"
+            >
+              <input
+                matInput
+                placeholder="Search Here"
+                [(ngModel)]="searchText1"
+              />
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex w-[100%] pt-4 p-1 flex-col gap-1 h-[450px] overflow-auto"
+        *ngIf="(final_value | filter : searchText1).length > 0; else nodata"
+      >
+        <ng-container
+          *ngFor="let item of final_value | filter : searchText1; let i = index"
+        >
+          <mat-card
+            class="border-2 cursor-pointer w-[400px] xs:w-[100%] pl-1"
+            (click)="data4(item, i)"
+            [ngClass]="{
+              'border-red-600': mat_card_border == i,
+              'bg-yellow-300': mat_card_border == i
+            }"
+          >
+            <div class="flex flex-1 xs:flex-row">
+              <div class="flex mr-3">
+                <img
+                  src="../../../assets/fav icon.jpg"
+                  class="flex h-[65px] w-[65px] xs:mt-[20px] mt-2"
+                />
+                <!-- <p class="text-sm font-medium p-1"></p>
+                            <p class="text-sm font-medium p-1"></p> -->
+              </div>
+              <div class="xs:ml-[5px] flex-1">
+                <!-- Country -->
+                <div class="flex text-black">
+                  <span
+                    class="text-lg font-extrabold text-black p-1"
+                    [ngClass]="{
+                      heading: isDue(item.due_datetime),
+                      overdue: !isDue(item.due_datetime)
+                    }"
+                    >{{ item.task_name }}</span
+                  >
+                </div>
+                <!-- Camp Name -->
+                <div class="flex">
+                  <span class="text-sm text-gray-500 p-[2px]">{{
+                    item.relevent_subject
+                  }}</span>
+                </div>
+                <!-- Camp ID -->
+                <div class="flex">
+                  <span class="text-sm text-gray-500 p-[2px]">
+                    <span *ngIf="item.syllabus_name.length == 1">
+                      {{ item.syllabus_name[0] }}
+                    </span>
+                    <span *ngIf="item.syllabus_name.length == 2">
+                      {{ item.syllabus_name[0] }},
+                      {{ item.syllabus_name[1] }}
+                    </span>
+                    <span *ngIf="item.syllabus_name.length > 2">
+                      {{ item.syllabus_name[0] }}, {{ item.syllabus_name[1] }},
+                      <span class="cursor-pointer" [matMenuTriggerFor]="menu"
+                        >....</span
+                      >
+                      <mat-menu
+                        #menu="matMenu"
+                        class="cursor-pointer h-[180px]"
+                      >
+                        <ng-container *ngFor="let name of item.syllabus_name">
+                          <span mat-menu-item>{{ name }}</span>
+                        </ng-container>
+                      </mat-menu>
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <!-- count  -->
+              <div class="pl-2 flex-1">
+                <div class="flex">
+                  <span class="text-sm text-gray-500 p-1">{{
+                    item.due_datetime | date : "yyyy-MM-dd" | dayOfWeek
+                  }}</span>
+                </div>
+
+                <div class="flex gap-1 xs:flex-wrap">
+                  <span
+                    class="text-sm flex text-gray-500"
+                    [ngClass]="{
+                      due: isDue(item.due_datetime),
+                      overdue: !isDue(item.due_datetime)
+                    }"
+                  >
+                    {{ item.due_datetime | date : "dd MMM y " }}</span
+                  >
+                  <span
+                    class="text-sm flex text-gray-500"
+                    [ngClass]="{
+                      due: isDue(item.due_datetime),
+                      overdue: !isDue(item.due_datetime)
+                    }"
+                    >{{ item.due_datetime | date : " h:mm a" }}</span
+                  >
+                </div>
+
+                <div class="flex">
+                  <span
+                    class="text-sm p-1"
+                    [ngClass]="{
+                      due: isDue(item.due_datetime),
+                      overdue: !isDue(item.due_datetime)
+                    }"
+                  >
+                    {{ isDue(item.due_datetime) ? "Due in " : "Overdue by "
+                    }}{{ item.days }} days
+                  </span>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </ng-container>
+      </div>
+      <ng-template #nodata>
+        <p *ngIf="final_value?.length > 0">
+          No Results Found "{{ searchText1 }}"
+        </p>
+      </ng-template>
+
+      <div
+        *ngIf="final_value?.length == 0"
+        class="flex justify-around font-bold mt-2"
+      >
+        <p>No data Found</p>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Completed">
+    <div class="flex flex-col w-full">
+      <div class="flex pt-4">
+        <mat-form-field
+          appearance="outline"
+          class="custom-input-field w-[400px] h-[10%] input-field2"
+        >
+          <input
+            matInput
+            placeholder="Search Here"
+            #input
+            [(ngModel)]="searchText2"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div
+        class="flex w-[100%] p-1 flex-col gap-2 h-[350px] overflow-auto"
+        *ngIf="(Complete_Value | filter : searchText2).length > 0; else noData"
+      >
+        <ng-container>
+          <mat-card
+            class="w-[400px] xs:w-[100%] pl-1"
+            *ngFor="
+              let data of Complete_Value | filter : searchText2;
+              let i = index
+            "
+          >
+            <div class="flex justify-around xs:flex-row flex-1">
+              <div class="flex items-center">
+                <img
+                  src="../../../assets/fav icon.jpg"
+                  class="h-[65px] w-[65px]"
+                />
+                <!-- <p class="text-sm font-medium p-1"></p>
+                            <p class="text-sm font-medium p-1"></p> -->
+              </div>
+              <div class="flex flex-col flex-1 pl-2">
+                <!-- Country -->
+                <div class="flex">
+                  <span
+                    class="font-extrabold text-lg text-black"
+                    [ngClass]="{ 'text-red-500': !isDue2(data.due_datetime) }"
+                    >{{ data.task_name }}</span
+                  >
+                </div>
+                <!-- Camp Name -->
+                <div class="flex">
+                  <span class="text-sm p-[2px] text-gray-500">{{
+                    data.relevent_subject
+                  }}</span>
+                </div>
+                <!-- Camp ID -->
+                <div class="flex">
+                  <span class="text-sm p-[2px] text-gray-500">
+                    <span *ngIf="data.syllabus_name.length == 1">
+                      {{ data.syllabus_name[0] }}
+                    </span>
+                    <span *ngIf="data.syllabus_name.length == 2">
+                      {{ data.syllabus_name[0] }},
+                      {{ data.syllabus_name[1] }}
+                    </span>
+                    <span *ngIf="data.syllabus_name.length > 2">
+                      {{ data.syllabus_name[0] }}, {{ data.syllabus_name[1] }},
+                      <span class="cursor-pointer" [matMenuTriggerFor]="menu"
+                        >....</span
+                      >
+                      <mat-menu #menu="matMenu" class="cursor-pointer">
+                        <ng-container *ngFor="let name of data.syllabus_name">
+                          <span mat-menu-item>{{ name }}</span>
+                        </ng-container>
+                      </mat-menu>
+                    </span>
+                  </span>
+                </div>
+                <!-- <div  class="flex">
+                            <span class="text-sm font-medium "><mat-icon>notifications</mat-icon>7.15-am.25 jusn 2023</span>
+                           
+                          </div> -->
+              </div>
+              <!-- count  -->
+              <div class="pl-2 flex flex-col flex-1 text-sm">
+                <div class="flex">
+                  <span class="text-sm text-gray-500">
+                    {{ isDue2(data.due_datetime) ? "Ontime " : "Delay" }}
+                  </span>
+                </div>
+
+                <div class="flex gap-[2px] xs:flex-wrap">
+                  <span
+                    class="flex text-gray-500"
+                    [ngClass]="{ 'text-red-500': !isDue2(data.due_datetime) }"
+                    >{{ data.due_datetime | date : "dd MMM y " }}</span
+                  >
+                  <span
+                    class="flex text-gray-500"
+                    [ngClass]="{ 'text-red-500': !isDue2(data.due_datetime) }"
+                    >{{ data.due_datetime | date : " h:mm a" }}</span
+                  >
+                </div>
+
+                <div
+                  class="flex text-gray-500 text-sm"
+                  [ngClass]="{ 'text-red-500': !isDue2(data.due_datetime) }"
+                >
+                  completed on
+                  {{ data.due_datetime | date : "dd MMM y h:mm a" }}
+                  <span class="text-sm font-medium p-1"></span>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </ng-container>
+      </div>
+      <ng-template #noData>
+        <p *ngIf="Complete_Value?.length > 0">
+          No Data Found"{{ searchText2 }}",
+        </p>
+      </ng-template>
+    </div>
+  </mat-tab>
+</mat-tab-group>

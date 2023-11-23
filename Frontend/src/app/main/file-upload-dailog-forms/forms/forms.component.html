@@ -1,0 +1,181 @@
+<div class="w-full h-auto">
+  <div class="flex justify-center items-center">
+    <p class="text-sm font-extrabold">Form without audit trail</p>
+  </div>
+  <div class="flex justify-center items-center">
+    <p class="text-[red] font-bold text-xs">
+      For preventing SQL injection attack, You will have to use mysql.escape()
+      method in the backend for the all input fields including text box,
+      datefield, numeric field, time, combo box (with multi select), check box,
+      radio buttons etc entered by the user. In addition, for numeric fields
+      check number input field tab in burger menu where Non numeric characters
+      is disabled as input from the user key board.
+    </p>
+  </div>
+  <!-- Without Audit Trail  -->
+  <div class="mt-3 mb-3 ">
+    <form action="" class="flex flex-col w-full gap-5 justify-center">
+      <div class="flex gap-3 w-full justify-center xs:flex-col">
+        <div class="flex w-[50%] justify-center flex-col  xs:w-full">
+          <div class="flex justify-center">
+            <mat-form-field
+              class="example-full-width input custom-input-field"
+              appearance="outline"
+            >
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Ex. Pizza" class="input flex"  />
+            </mat-form-field>
+          </div>
+          <div class="flex justify-center items-center">
+            <mat-form-field
+            appearance="outline"
+            class="custom-input-field input"
+          >
+            <mat-label>Choose a date and time</mat-label>
+            <input
+              formControlName="dob"
+              matInput
+              [ngxMatDatetimePicker]="datetimepicker"
+              class=""
+              readonly
+              (click)="datetimepicker.open()"
+            />
+            <mat-error>date and time is required</mat-error>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="$any(datetimepicker)"
+            ></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #datetimepicker>
+              <ng-template>
+                <span mat-button>OK</span>
+              </ng-template>
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+          </div>
+          <div class="flex justify-center items-center">
+            <mat-form-field
+              appearance="outline"
+              class="input custom-input-field"
+            >
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" class="" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex w-[50%] flex-col  xs:w-full">
+          <div class="flex justify-center">
+            <mat-form-field
+              class="example-full-width input custom-input-field"
+              appearance="outline"
+            >
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Ex. Pizza" class="input flex" />
+            </mat-form-field>
+          </div>
+          <div class="flex justify-center items-center">
+            <mat-form-field
+              class="example-full-width input custom-input-field"
+              appearance="outline"
+            >
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Ex. Pizza" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center items-center">
+        <button mat-button style="background: #3366ff">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<mat-divider></mat-divider>
+
+<!-- With Audit Trail  -->
+
+<div>
+  <div class="flex justify-center items-center">
+    <p class="text-sm font-bold">Form with audit trail</p>
+  </div>
+  <div class="flex justify-center items-center">
+    <p class="text-[red] font-bold text-xs">
+      For preventing SQL injection attack, You will have to use mysql.escape()
+      method in the backend for the all input fields including text box,
+      datefield, numeric field, time, combo box (with multi select), check box,
+      radio buttons etc entered by the user. In addition, for numeric fields
+      check number input field tab in burger menu where Non numeric characters
+      is disabled as input from the user key board.
+    </p>
+  </div>
+</div>
+
+<div class="flex w-[50%] flex-col  xs:w-full">
+  <form action="" class="w-full " [formGroup]="withAuditTrail">
+    <div class=" ">
+      <div class="flex">
+        <mat-form-field appearance="outline" class="custom-input-field input " >
+          <mat-label>Country:</mat-label>
+          <mat-select  name="food" formControlName="country"  >
+            <mat-option [value]="1">1 </mat-option>
+            <mat-option [value]="1">1 </mat-option>
+            <mat-option [value]="1">1 </mat-option>
+            <mat-option [value]="1">1 </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex ">
+        <mat-form-field appearance="outline"  class="custom-input-field input ">
+          <mat-label>State /Province:</mat-label>
+          <mat-select   name="food" formControlName="state"   >
+            <mat-option [value]="123"> cvsdfsd</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field
+          class="example-full-width custom-input-field input"
+          appearance="outline"
+        >
+          <mat-label>City/District/Country</mat-label>
+          <input matInput placeholder="Ex. Pizza" class="flex"  formControlName="city">
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field
+          class="example-full-width custom-input-field input"
+          appearance="outline"
+        >
+          <mat-label>Address Line 1:</mat-label>
+          <input matInput placeholder="Ex. Pizza" class="input flex"  formControlName="address1"  />
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field
+          class="example-full-width custom-input-field input"
+          appearance="outline"
+        >
+          <mat-label>Address Line 2:</mat-label>
+          <input matInput placeholder="Ex. Pizza" class="input flex" formControlName="address2" />
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field
+          class="example-full-width custom-input-field input"
+          appearance="outline"
+        >
+          <mat-label>Postal Pin Code:</mat-label>
+          <input matInput placeholder="Ex. Pizza" class="flex"   formControlName="pincode" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex">
+      <button mat-button style="background: #3366ff"  >Submit</button>
+    </div>
+  </form>
+</div>

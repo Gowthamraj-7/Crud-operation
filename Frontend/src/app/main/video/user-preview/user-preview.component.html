@@ -1,0 +1,70 @@
+<div>
+  <p>WOW Video</p>
+</div>
+<div class="flex w-full gap-3 lt-xs:flex-col">
+  <div class="flex  flex-[1] ">
+    <div
+      class=" min-w-[100%] h-[300px] w-auto  bg-gray-300 border-[5px] border-gray-400"
+    ></div>
+    </div>
+    <div class="flex flex-col flex-[1]">
+      <div>
+        <p class="text-blue-600 font-semibold">WOW Video Description with Time Stamp<span class="text-red-600">*</span> </p>
+    </div>
+      <div>
+        Click on the timestamp below to
+        view the muted 5 sec clips of the Video. These muted 5 sec clips with
+        description shall be visible to all paid/unpaid users as a preview to
+        the video.
+      </div>
+      <div class="{{panelOpenState ? 'flex flex-col gap-3':''}}">
+          <div >
+              <mat-expansion-panel
+              class=""
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false"
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title> Self aware panel </mat-panel-title>
+                  <!-- <mat-panel-description class="">
+                    Currently I am {{ panelOpenState ? "open" : "closed" }}
+                  </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <p>I'm visible because I am open</p>
+              </mat-expansion-panel>
+          </div>
+          <div >
+              <mat-expansion-panel
+              class=""
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false"
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title> Self aware panel </mat-panel-title>
+                  <!-- <mat-panel-description>
+                    Currently I am {{ panelOpenState ? "open" : "closed" }}
+                  </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <p>I'm visible because I am open</p>
+              </mat-expansion-panel>
+          </div>
+          <div  >
+              <mat-expansion-panel
+              class=""
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false"
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title> Self aware panel </mat-panel-title>
+                  <!-- <mat-panel-description>
+                    Currently I am {{ panelOpenState ? "open" : "closed" }}
+                  </mat-panel-description> -->
+                </mat-expansion-panel-header>
+                <p>I'm visible because I am open</p>
+              </mat-expansion-panel>
+          </div>
+      </div>
+
+    </div>
+  </div>
+

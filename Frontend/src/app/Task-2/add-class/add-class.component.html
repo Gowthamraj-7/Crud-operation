@@ -1,0 +1,60 @@
+<div class="flex flex-col w-fit">
+  <!-- <mat-toolbar class=" flex justify-end   p-2 h-8 bg-[#3366ff]"> 
+    <span class="flex justify-start text-white">{{ data1.type == 1 ? "add class" : "edit class" }}</span>
+    <mat-icon mat-dialog-close fontIcon=""  >close</mat-icon> 
+   
+</mat-toolbar>  -->
+
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="font-small-in-size">
+    {{ data1.type == 1 ? "add class" : "edit class" }}
+  </span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon [mat-dialog-close] >close</mat-icon>
+  </button>
+</mat-toolbar>
+  <form [formGroup]="data">
+  
+    <div class="mt-2 w-full xs:w-full px-2">
+      <mat-form-field
+        appearance="outline"
+        class="custom-input-field w-[100%] input-field2"
+      >
+        <mat-label> Enter Class </mat-label>
+
+        <input matInput type="text" formControlName="class" />
+      </mat-form-field>
+    </div>
+    <div class="mt-2 w-full xs:w-full px-2">
+      <mat-form-field
+        appearance="outline"
+        class="custom-input-field w-[100%] input-field2"
+      >
+        <mat-label> Enter Class Capacity </mat-label>
+
+        <input matInput type="number" formControlName="capacity" />
+      </mat-form-field>
+    </div>
+    <div class="px-[70px] mb-2" *ngIf="data1.type == 1">
+      <button
+        mat-raised-button
+        class="mat-raised-button"
+        (click)="method()"
+        [disabled]="data.invalid"
+      >
+        Save
+      </button>
+    </div>
+    <div class="px-[70px] mb-2" *ngIf="data1.type == 2">
+      <button
+        mat-raised-button
+        class="mat-raised-button"
+        (click)="update()"
+        [disabled]="data.invalid"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>

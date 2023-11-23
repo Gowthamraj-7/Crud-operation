@@ -1,0 +1,39 @@
+<div class="w-[250px] h-[100px] flex justify-center flex-col">
+    <!-- <mat-toolbar class="component--dialog-box__custom-toolbar">
+       <span class="font-small-in-size"> choose class </span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="flex items-center justify-center">
+          <mat-icon [mat-dialog-close]>close</mat-icon>
+        </button>
+      </mat-toolbar> -->
+    <span class=" mt-[5px] font-bold text-lg text-center">Are you Sure?</span>
+    <span class=" font-bold text-sm text-center">Really you want to Delete </span>
+    <div class=" mt-[5px] mb-1 flex flex-row justify-center min-w-[100px ]">
+        <div>
+          <button
+            mat-raised-button
+            class="mat-raised-button"
+            [mat-dialog-close]
+          
+          >
+           Cancel
+          </button>
+        </div>
+
+        <div class="pl-2">
+          <button
+          mat-raised-button
+          class="mat-raised-button1 "
+          [mat-dialog-close]
+                 (click)="delete()"
+                >
+          Delete
+                </button>
+        </div>
+
+</div>
+<!-- <div class="px-[70px] mb-2 pt-4">
+
+
+</div> -->
+

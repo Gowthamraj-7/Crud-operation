@@ -1,0 +1,22 @@
+.mat-raised-button{
+    border-radius: 20px !important;
+  color: aliceblue;
+  width: fit-content;
+  background: #3366ff
+}
+mat-raised-button.active{
+    background: #3366ff
+}
+// .icon-line {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: flex-end;
+// }
+// .icon-container {
+//   display: flex;
+//   align-items: end;
+// }
+
+.icon-container mat-icon {
+  margin-left: 25px; /* Adjust the margin as needed to control the space between class name and icon. */
+}

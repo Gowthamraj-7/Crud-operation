@@ -1,0 +1,158 @@
+<!-- <div class="flex ">
+    <div class="flex flex-row xs:flex-col xs:w-full">
+        <mat-form-field appearance="outline" class=" example-full-width custom-input-field input">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" >
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> 
+
+<div  class="flex justify-center py-3 px-3 h-[55px]">
+    <button mat-raised-button class="mat-raised-button"> Get Users</button>
+</div>
+
+    </div>
+
+    
+    
+</div> -->
+
+
+<div class="flex-col w-fit justify-center lt-md:w-fit"> 
+    <div class="flex gap-[20px] mt-[30px] xs:flex-col"> 
+      <form [formGroup]="Getreserved"> 
+        <div> 
+          <mat-form-field class="example-full-width custom-input-field input" appearance="outline"> 
+           <mat-label>Date Of Birth</mat-label> 
+           <input readonly (click)="picker.open()"   formControlName="reserveddate" matInput [matDatepicker]="picker" /> 
+           <mat-hint>MM/DD/YYYY</mat-hint> 
+           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> 
+           <mat-datepicker #picker></mat-datepicker> 
+           </mat-form-field> 
+      </div> 
+      </form> 
+      <div class="mt-[8px]"> 
+        <button 
+          mat-raised-button 
+          [disabled]="Getreserved.invalid" 
+          class="bg-[#3366FF]" 
+          (click)="get_Trip_Data()" 
+        > 
+          Show Details 
+        </button> 
+      </div> 
+    </div> 
+   
+    <!-- card part --> 
+    <div class="flex flex-col gap-[15px] mt-[30px] w-fit xs:w-[100%]"> 
+   
+      <ng-container *ngIf="noReservedTrips; else reservedTrips"> 
+        <mat-card> 
+        <p class="text-base font-medium">There is no Reserved Trips</p> 
+      </mat-card> 
+      </ng-container> 
+      <ng-template #reservedTrips> 
+      <ng-container reservedTrips *ngFor="let i of final_value"> 
+        <mat-card> 
+          <div class="flex justify-between xs:flex-row"> 
+            <div> 
+              <!-- Country --> 
+              <div class="flex"> 
+                <p class="text-sm font-medium p-1">Country:</p> 
+                <p class="text-sm font-medium p-1">{{ i.country_code}}</p> 
+              </div> 
+              <!-- Camp Name --> 
+              <div  class="flex"> 
+                <p class="text-sm font-semibold p-1">Camp Name:</p> 
+                <p class="text-sm font-semibold p-1">{{ i.camp_name }}</p> 
+              </div> 
+              <!-- Camp ID --> 
+              <div  class="flex"> 
+                <p class="text-sm font-medium p-1">Camp ID:</p> 
+                <p class="text-sm font-medium p-1">{{ i.camp_id }}</p> 
+              </div> 
+            </div> 
+            <!-- count  --> 
+            <div> 
+               
+              <div class="flex"> 
+                <p class="text-sm font-medium p-1">Total Count:</p> 
+                <p class="text-sm font-medium p-1"> 
+                  {{ i.total_count}} 
+                </p> 
+              </div> 
+               
+              <div  class="flex"> 
+                <p class="text-sm font-semibold p-1">Male Count:</p> 
+                <p class="text-sm font-semibold p-1"> 
+                  {{ i.male_count}} 
+                </p> 
+              </div> 
+               
+              <div  class="flex"> 
+                <p class="text-sm font-medium p-1">Female Count:</p> 
+                <p class="text-sm font-medium p-1"> 
+                  {{ i.femaleCount }} 
+                </p> 
+              </div> 
+              <div class="flex items-center justify-center lt-md:flex-row"> 
+                <button 
+                  mat-raised-button 
+                  class="bg-[#3366FF] " 
+                  [matMenuTriggerFor]="menu" 
+              
+                > 
+                  User Profile 
+                </button> 
+                <mat-menu mat-menu #menu="matMenu" class=" min-h-[50px]  overflow-auto"> 
+                  <div 
+                    mat-menu-item 
+                    *ngFor="let data of i.user_details" 
+                  > 
+                  <mat-card> 
+                  <div>Name: {{ data.firstname }} {{ data.lastname }} <br />
+                      Contact: {{ data.mobile_number }} <br/>
+                    
+                  
+                  </div> 
+                 
+                  </mat-card> 
+                 
+                  </div> 
+                </mat-menu> 
+              </div> 
+            </div> 
+   
+            <!-- <div class="flex items-center lt-md:flex-row"> 
+              <button 
+                mat-raised-button 
+                class="bg-[#3366FF] " 
+                [matMenuTriggerFor]="menu" 
+            
+              > 
+                User Profile 
+              </button> 
+              <mat-menu #menu="matMenu" class=" min-h-[50px]  overflow-auto"> 
+                <div 
+                  mat-menu-item 
+                  *ngFor="let data of i.user_details" 
+                > 
+                <mat-card> 
+                <div>Name: {{ data.firstname }} {{ data.lastname }} <br />
+                    Contact: {{ data.mobile_number }} <br/>
+                  
+                
+                </div> 
+               
+                </mat-card> 
+               
+                </div> 
+              </mat-menu> 
+            </div>  -->
+          </div> 
+        </mat-card> 
+      </ng-container> 
+    </ng-template> 
+    </div> 
+  </div>

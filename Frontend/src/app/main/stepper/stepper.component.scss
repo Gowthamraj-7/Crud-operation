@@ -1,0 +1,27 @@
+.stepper-container{
+    width: 100%;
+    
+}
+
+
+
+.stepper-input{
+    min-width: 180px;
+    width: 50% ;
+    
+}
+
+
+@media screen and (max-width:768px) {
+.stepper-input{
+    width: 60%;
+}    
+}
+@media screen and (max-width:425px) {
+.stepper-input{
+    width: 100%;
+}    
+}
+
+
+

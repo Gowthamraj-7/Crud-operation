@@ -1,0 +1,95 @@
+<div class="flex w-full flex-col xs:w-full">
+  <form action="" class="w-full" [formGroup]="withAuditTrail">
+    <div class="w-[50%] lt-md:w-full">
+      <div class="flex">
+        <mat-form-field
+          hintLabel="eg:1234567890"
+          appearance="outline"
+          class="custom-input-field input"
+        >
+          <ngx-mat-intl-tel-input
+            [preferredCountries]="['in', 'gb']"
+            [enablePlaceholder]="true"
+            [enableSearch]="true"
+            name="phone"
+            describedBy="phoneInput"
+            formControlName="phone"
+          ></ngx-mat-intl-tel-input>
+          <!-- <mat-error *ngIf=" this.form.controls['phone'].invalid ">This is required</mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <div class="flex">
+        <mat-form-field
+          class="example-full-width custom-input-field input"
+          appearance="outline"
+        >
+          <mat-label>FirstName</mat-label>
+          <input matInput placeholder="Ex:gokul" formControlName="first" />
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field
+          class="example-full-width custom-input-field input"
+          appearance="outline"
+        >
+          <mat-label>LastName</mat-label>
+          <input matInput placeholder="Ex:Raj" formControlName="last" />
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field
+          appearance="outline"
+          class="example-full-width custom-input-field input"
+        >
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="dob"
+            [min]="currentDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-radio-group aria-label="Select an option" formControlName="gender">
+          <mat-label>Gender:</mat-label>
+          <mat-radio-button value="1">male</mat-radio-button>
+          <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="mt-2 w-full">
+        <mat-form-field
+          appearance="outline"
+          class="custom-input-field w-[100%] input-field2"
+        >
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country" name="food">
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.value"
+            >
+              {{ country.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex py-3">
+      <button
+        mat-raised-button
+        class="mat-raised-button"
+        [disabled]="withAuditTrail.invalid"
+        (click)="post_method()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

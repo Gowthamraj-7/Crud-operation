@@ -1,0 +1,141 @@
+.mat-raised-button {
+  border-radius: 20px !important;
+  color: aliceblue;
+  width: fit-content;
+  background: #3366ff;
+}
+mat-raised-button.active {
+  background: #3366ff;
+}
+// ::ng-deep.mat-form-field-wrapper{
+//   padding-bottom: unset !important;
+// }
+
+.calc-height {
+  height: calc(100% - 27px);
+}
+
+// Dialog box toolbar
+.component--dialog-box__custom-toolbar {
+  &.mat-toolbar {
+    height: 27px;
+    background-color: #3366ff;
+    // border-radius: 4px;
+    padding: 0 0 0 12px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 550;
+
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.mat-dialog-content {
+  display: block;
+  margin: 0 0;
+  margin-top: -10px;
+  padding: 10px 10px;
+  max-height: 65vh;
+  // overflow: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mat-dialog-container {
+  display: block;
+  padding: 0px !important;
+  border-radius: 4px;
+  /* box-sizing: border-box; */
+  overflow: hidden !important;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  max-height: inherit;
+}
+
+// Tree
+.example-tree-invisible {
+  display: none;
+}
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0px 0px 0px 30px;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.txtColor:hover {
+  color: red;
+  cursor: pointer;
+}
+
+// .mat-tree-position {
+//   position: fixed;
+//   top: 10%;
+// }
+
+// mat-tree-node {
+//   background-color: unset;
+// }
+
+// mat-tree {
+//   background: unset;
+// }
+
+mat-tree > mat-nested-tree-node > li > div.mat-tree-node {
+  border-radius: 4px;
+  // background-color: #f5f5f5;
+  &::before {
+    border: none;
+  }
+}
+
+mat-tree li.mat-tree-node,
+mat-tree div.mat-tree-node {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    border: 1px dotted lightgray;
+    position: absolute;
+    height: 40px;
+    left: -20px;
+    border-width: 0 0 1px 1px;
+    width: 24px;
+    bottom: 24px;
+  }
+}
+
+mat-tree mat-tree-node:first-child li.mat-tree-node::before,
+mat-tree mat-nested-tree-node:first-child > li > div.mat-tree-node::before {
+  height: 24px;
+}
+
+mat-tree mat-nested-tree-node:not(:last-child) > li > ul {
+  position: relative;
+  &::before {
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: -20px;
+    bottom: 24px;
+    content: "";
+    border-left: 1px dotted lightgrey;
+  }
+}
+
+.mat-tree-node {
+  &:hover {
+    background-color: #d6d6d6 !important;
+  }
+}
